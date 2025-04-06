@@ -7,7 +7,7 @@ clock = pygame.time.Clock()
 
 # Constants ::
 Time_Limit= 30
-Width, Height = 1200,650
+Width, Height = 1200,600
 width = Width/6
 height = Height/8
 question_file = 'qset1_backup'
@@ -21,7 +21,7 @@ blue = (0,0,255)
 red = (255,0,0)
 green = (0,255,0)
 yellow = (255,255,0)
-light_orange = (255, 213, 128)
+light_orange = (255,219,187)
 # categories = ['famous people','geography','history','sport','science','trivia']
 def aspect_scale(img,bx,by):
     """ Scales 'img' to fit into box bx/by.
