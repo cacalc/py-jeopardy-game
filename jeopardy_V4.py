@@ -7,7 +7,7 @@ clock = pygame.time.Clock()
 
 # Constants ::
 Time_Limit= 30
-Width, Height = 1200,700
+Width, Height = 1200,650
 width = Width/6
 height = Height/8
 question_file = 'qset1_backup'
@@ -21,6 +21,7 @@ blue = (0,0,255)
 red = (255,0,0)
 green = (0,255,0)
 yellow = (255,255,0)
+light_orange = (255, 213, 128)
 # categories = ['famous people','geography','history','sport','science','trivia']
 def aspect_scale(img,bx,by):
     """ Scales 'img' to fit into box bx/by.
@@ -72,7 +73,7 @@ class Cell(object):
 		if 'background' in data:
 			self.background = data['background']
 		else:
-			self.background = black	
+			self.background = light_orange	
 		
 	def set_content(self,cell_text):
 		self.content = cell_text
@@ -99,7 +100,7 @@ class GameBoard(object):
 		self.selected_team = 0
 		self.previous_team = 0
 		pygame.init()
-		self.font = pygame.font.SysFont('Arial', 18)
+		self.font = pygame.font.SysFont('Arial', 30)
 		pygame.display.set_caption('Jeopardy board game')
 		self.screen = pygame.display.set_mode((Width,Height), 0, 32)	
 		self.screen.fill((white))
@@ -203,7 +204,7 @@ class GameBoard(object):
 										cell.yPos, 
 										cell.width, 
 										cell.height),2)
-			self.screen.blit(self.font.render(text, True, red), 
+			self.screen.blit(self.font.render(text, True, black), 
 										 (cell.xPos, cell.yPos ))
 		if cell.type == 'button':
 				self.rect = pygame.draw.rect(self.screen, background, 
@@ -216,8 +217,8 @@ class GameBoard(object):
 		pygame.display.update()
 
 	def show_team(self,cell):
-		foreground = red
-		background = black
+		foreground = black
+		background = light_orange
 		if Mode == 'question_time':
 				background = white
 		## the next line clear the background for the teams
@@ -254,7 +255,7 @@ class GameBoard(object):
 	def show_question(self,cell):
 		text = cell.question
 		sizeX, sizeY = self.font.size(text)
-		self.clear_screen(black)
+		self.clear_screen(light_orange)
 		
 		# self.show_buttons()
 		self.update_cells()
@@ -263,7 +264,7 @@ class GameBoard(object):
 			print('picture',cell.path)
 			img = pygame.image.load(cell.path)
 			img = aspect_scale(img, 400, 400)
-			self.screen.blit(self.font.render(text, True, red), (Width/2-(sizeX/2), Height/2+20))
+			self.screen.blit(self.font.render(text, True, black), (Width/2-(sizeX/2), Height/2+20))
 			img_w , img_h = img.get_rect().size
 			self.screen.blit(img,(Width/2-(img_w/2),Height/2-(img_h/2)-100))
 			pygame.display.flip()
@@ -275,7 +276,7 @@ class GameBoard(object):
 
 
 		else:
-			self.screen.blit(self.font.render(text, True, red), (Width/2-(sizeX/2), Height/2))
+			self.screen.blit(self.font.render(text, True, black), (Width/2-(sizeX/2), Height/2))
 
 	def update_cells(self):
 		if Mode == 'board_time':
@@ -332,7 +333,7 @@ class GameBoard(object):
 		if team_select:
 			for team in gameBoard.Teams:
 				if team.selected:
-					print ('here we have a prevoius team and we in board mode so we deduct from prevoius team');
+					print ('here we have a previous team and we are in board mode so we deduct from prevoius team');
 					gameBoard.previous_team.score = gameBoard.previous_team.score + score
 		else:
 			selected_team = self.check_team_select()
