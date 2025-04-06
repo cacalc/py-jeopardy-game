@@ -325,7 +325,7 @@ class GameBoard(object):
 			self.update_score(current_score,False)
 		elif btn.question=='INCORRECT':
 			selected_team = self.check_team_select()
-			self.update_score(-current_score,False)
+			#self.update_score(-current_score,False)
 		gameBoard.update_cells()
 
 	def update_score(self,score,team_select):
