@@ -351,9 +351,9 @@ class Timer(object):
         self.startTime=0
         self.elapsed=0
     def start(self):
-        self.startTime = time.clock()
+        self.startTime = time.perf_counter()
     def show(self):
-        self.elapsed = round(time.clock() - self.startTime,1)
+        self.elapsed = round(time.perf_counter() - self.startTime,1)
         elapsed = str(self.elapsed)
         sizeX, sizeY = self.font.size(elapsed)
         middle_X = self.timer_x_pos+self.box_width/2-sizeX/2
