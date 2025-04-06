@@ -391,7 +391,7 @@ while True:
 							gameBoard.check_button(clicked_cell)
 						elif clicked_cell.type == 'team':
 							print('team select')
-							gameBoard.update_score(-gameBoard.current_question.score,True)
+							#gameBoard.update_score(-gameBoard.current_question.score,True)
 						else:
 							print('Empty space clicked will reshow the question, this is for replay of audio files specially')
 							timer.start()
